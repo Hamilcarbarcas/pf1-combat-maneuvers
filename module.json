@@ -1,0 +1,55 @@
+{
+  "id": "pf1-combat-maneuvers",
+  "title": "PF1 Combat Maneuvers",
+  "description": "Makes Pathfinder 1e combat maneuvers into first-class, individually addressable things: a registry of maneuver types, per-maneuver CMB and CMD change targets, a maneuver picker on the CMB button, a Combat Maneuvers category on the combat tab, and automatic weapon-type/group tagging so bonus modules can target a single maneuver.",
+  "authors": [
+    {
+      "name": "Hamilcarbarcas",
+      "flags": {}
+    }
+  ],
+  "version": "0.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "relationships": {
+    "systems": [
+      {
+        "id": "pf1",
+        "type": "system"
+      }
+    ],
+    "requires": [
+      {
+        "id": "lib-wrapper",
+        "type": "module",
+        "reason": "Used to extend PF1's change-target resolution, actor data preparation and actor sheet safely, so the mod coexists with other modules that touch the same methods."
+      }
+    ],
+    "recommends": [
+      {
+        "id": "ckl-roll-bonuses",
+        "type": "module",
+        "reason": "Optional integration: maneuver items are tagged with a weapon base type named after the maneuver (Trip, Bull Rush) and a weapon group (Deft Maneuvers, Powerful Maneuvers), so roll-bonuses can target bonuses at a single maneuver or at a group of them. The mod is fully functional without it."
+      }
+    ]
+  },
+  "esmodules": [
+    "src/scripts/combat-maneuvers.mjs"
+  ],
+  "styles": [
+    "src/styles/pf1-combat-maneuvers.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "url": "https://github.com/Hamilcarbarcas/pf1-combat-maneuvers",
+  "readme": "https://github.com/Hamilcarbarcas/pf1-combat-maneuvers/blob/main/README.md",
+  "manifest": "https://github.com/Hamilcarbarcas/pf1-combat-maneuvers/releases/latest/download/module.json",
+  "download": "https://github.com/Hamilcarbarcas/pf1-combat-maneuvers/releases/download/v0.0.0/module.zip"
+}

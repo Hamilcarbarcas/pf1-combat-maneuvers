@@ -1,0 +1,96 @@
+/* Every selector is scoped to .pf1cm, because module CSS is unlayered and would
+   otherwise outrank the core @layer rules it collides with. */
+
+.pf1cm .pf1cm-filter {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.pf1cm .pf1cm-hint {
+  margin: 0 0 0.5rem;
+  font-size: var(--font-size-12, 12px);
+  opacity: 0.75;
+}
+
+.pf1cm .pf1cm-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.pf1cm .pf1cm-list .pf1cm-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.4rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.pf1cm .pf1cm-list .pf1cm-row:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.pf1cm .pf1cm-list .pf1cm-generic {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.4rem;
+}
+
+.pf1cm .pf1cm-list .pf1cm-icon {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  border: none;
+}
+
+.pf1cm .pf1cm-list .pf1cm-label {
+  flex: 1 1 auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pf1cm .pf1cm-list .pf1cm-custom {
+  margin-left: 0.25rem;
+  font-size: 0.75em;
+  opacity: 0.6;
+}
+
+.pf1cm .pf1cm-list .pf1cm-mod {
+  flex: 0 0 auto;
+  min-width: 3ch;
+  text-align: right;
+  font-weight: bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.pf1cm .pf1cm-list .pf1cm-toggle,
+.pf1cm .pf1cm-list .pf1cm-edit {
+  flex: 0 0 auto;
+}
+
+.pf1cm .pf1cm-list .pf1cm-toggle input {
+  margin: 0;
+}
+
+.pf1cm .pf1cm-list .pf1cm-empty {
+  padding: 0.5rem;
+  text-align: center;
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* The editor's rows open sheets rather than picking a roll. */
+.pf1cm-editor .pf1cm-list .pf1cm-row {
+  cursor: default;
+}
+
+/* Marks a target-row CMD that has been narrowed to one maneuver. */
+.pf1cm-cmd .value {
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+}

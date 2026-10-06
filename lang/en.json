@@ -1,0 +1,71 @@
+{
+  "PF1": {
+    "Subtypes": {
+      "Item": {
+        "attack": {
+          "maneuver": {
+            "Single": "Combat Maneuver",
+            "Plural": "Combat Maneuvers"
+          }
+        }
+      }
+    }
+  },
+  "PF1CM": {
+    "Section": "Combat Maneuvers",
+    "Generic": "Generic",
+    "GenericHint": "Untyped: broad CMB bonuses only, against plain CMD.",
+    "Maneuvers": {
+      "bullRush": "Bull Rush",
+      "dirtyTrick": "Dirty Trick",
+      "disarm": "Disarm",
+      "drag": "Drag",
+      "grapple": "Grapple",
+      "overrun": "Overrun",
+      "reposition": "Reposition",
+      "steal": "Steal",
+      "sunder": "Sunder",
+      "trip": "Trip"
+    },
+    "Target": {
+      "CMB": "CMB ({maneuver})",
+      "CMD": "CMD vs. {maneuver}",
+      "FFCMD": "Flat-Footed CMD vs. {maneuver}"
+    },
+    "Prompt": {
+      "Title": "Combat Maneuver",
+      "TitleFor": "Combat Maneuver — {name}",
+      "Filter": "Filter maneuvers",
+      "NoMatch": "No matching maneuver.",
+      "Customized": "Has a customized item"
+    },
+    "Editor": {
+      "Title": "Manage Combat Maneuvers",
+      "TitleFor": "Combat Maneuvers — {name}",
+      "Hint": "Editing or showing a maneuver creates its item.",
+      "Edit": "Edit item",
+      "ShowInCombat": "Show on the combat tab"
+    },
+    "Card": {
+      "CMDvs": "CMD vs. {maneuver}"
+    },
+    "Warning": {
+      "NoPermission": "You lack permission to modify {name}.",
+      "NoLibWrapper": "PF1 Combat Maneuvers requires libWrapper, which is not active."
+    },
+    "Settings": {
+      "showGenericOption": {
+        "Name": "Offer a generic maneuver",
+        "Hint": "Adds an untyped Generic entry to the maneuver prompt."
+      },
+      "promptOnCmbClick": {
+        "Name": "Prompt on CMB click",
+        "Hint": "Off: clicking CMB rolls a generic maneuver immediately."
+      },
+      "autoSyncTraits": {
+        "Name": "Keep maneuver tags in sync",
+        "Hint": "Maintains each maneuver item's weapon type and groups from the registry."
+      }
+    }
+  }
+}
