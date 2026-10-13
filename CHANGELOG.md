@@ -32,6 +32,9 @@
   Maneuvers** weapon group, making them targetable by roll-bonuses' weapon-type and
   weapon-group bonuses with no setup. Tags derive from the maneuver's id rather than
   its translated name, so they match on every client.
+- **Descriptions and effect notes.** Each core maneuver carries a description and
+  effect notes for its outcomes, on both rolled and created items. Maneuver items
+  created before this get them filled in where those fields are still empty.
 - Settings for the generic entry, whether CMB prompts at all, and whether tags are
   kept in sync.
 - API at `game.pf1CombatManeuvers`, with a `pf1CombatManeuvers.ready` hook.

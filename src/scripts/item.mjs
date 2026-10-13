@@ -54,6 +54,7 @@ function buildAction(actor, entry) {
     actionType: entry.actionType,
     ability: { attack: attackAbility(actor, entry) },
     activation: foundry.utils.deepClone(entry.activation),
+    notes: foundry.utils.deepClone(entry.notes),
   };
   return new pf1.components.ItemAction(data).toObject();
 }
@@ -66,6 +67,7 @@ export function buildManeuverData(actor, entry) {
     img: entry.img,
     system: {
       subType: SUBTYPE,
+      description: { value: entry.description },
       // These two are what roll-bonuses matches on. _prepareTraits sorts anything
       // absent from pf1.config.weaponGroups into the custom set, so the invented
       // group names work without registering them anywhere.
@@ -156,11 +158,38 @@ const isLegacyImage = (img) =>
 
 const sameTags = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
 
+const isBlank = (list) => !(list ?? []).some((n) => String(n ?? '').trim());
+
+/**
+ * Registry description and notes for fields an item has left empty.
+ *
+ * Items materialized before the registry carried text have none. Only empty fields
+ * are filled, so anything written by hand is never replaced.
+ */
+function fillBlankText(item, entry) {
+  const update = {};
+  const system = item._source.system;
+  if (entry.description && !String(system.description?.value ?? '').trim()) {
+    update['system.description.value'] = entry.description;
+  }
+
+  const actions = foundry.utils.deepClone(system.actions ?? []);
+  const notes = actions[0] ? (actions[0].notes ??= {}) : null;
+  let changed = false;
+  for (const key of ['effect', 'footer']) {
+    if (!notes || !entry.notes[key].length || !isBlank(notes[key])) continue;
+    notes[key] = [...entry.notes[key]];
+    changed = true;
+  }
+  if (changed) update['system.actions'] = actions;
+  return update;
+}
+
 /**
  * Bring a materialized item's tags back in line with its registry entry.
  *
- * Only touches the two trait arrays, and only when they actually differ, so a user
- * editing anything else on the item is never fought with. Tags this module used to
+ * Only touches the two trait arrays, a legacy image, and empty description or notes,
+ * so a user editing anything else on the item is never fought with. Tags this module used to
  * write are dropped; anything else the user added by hand is left alone, since
  * there is no way to tell a deliberate tag from a stale one.
  */
@@ -183,6 +212,8 @@ export async function syncTraits(item) {
   if (!sameTags(groups, source)) update['system.weaponGroups'] = groups;
 
   if (entry.img && item.img !== entry.img && isLegacyImage(item.img)) update.img = entry.img;
+
+  Object.assign(update, fillBlankText(item, entry));
 
   if (foundry.utils.isEmpty(update)) return false;
   await item.update(update);

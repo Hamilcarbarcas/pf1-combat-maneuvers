@@ -87,6 +87,11 @@ Each maneuver can have its own item, so you can customize one the way you would 
 other attack: change the ability score it uses, add damage, attach notes, hang
 script calls on it.
 
+Every core maneuver comes with a description and effect notes for its outcomes,
+such as `Target prone on success` for Trip. The notes appear on the attack card
+whether or not the maneuver has an item yet. On an existing maneuver item they fill in only
+where the description or notes are empty, so your own text is never replaced.
+
 Those items are created **on demand**. Right-click **CMB** to open the manager,
 which lists every maneuver and lets you edit one or show it on the combat tab —
 either action creates the item at that point. Until then nothing exists, and rolling
@@ -143,6 +148,8 @@ Hooks.once('init', () => {
     img: 'icons/svg/falling.svg',
     activation: { type: 'standard', unchained: { cost: 2, type: 'action' } },
     weaponGroups: ['Deft Maneuvers'],
+    description: '<p>Rules text shown on the item.</p>',
+    notes: { effect: ['Target @Condition[prone] on success.'] },
     // baseType defaults to the id written out plainly: "Hamstring".
   });
 });
@@ -176,6 +183,8 @@ Useful entry points:
 - **Grapple's branches are not modeled.** Attempting a grapple works; the states
   that follow from one — pin, move, tie up, release — are a planned phase.
 - **No compendium ships.** Maneuver feats need their Change entered by hand for now.
+- **Descriptions and notes can't be edited for all actors at once.** Edit them per
+  item for now.
 - **Vehicles are out of scope.** They compute CMD through a separate path.
 
 ## License

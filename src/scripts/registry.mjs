@@ -11,6 +11,8 @@
 // system or Foundry core - is a white glyph on transparency, which disappears
 // against a light sheet. These are dark-backed so they read on any background, and
 // the border is tinted by weapon group so the two groups are separable at a glance.
+import { MANEUVER_TEXT } from './maneuver-text.mjs';
+
 const ICONS = 'modules/pf1-combat-maneuvers/src/assets/icons';
 
 const icon = (name) => `${ICONS}/${name}.svg`;
@@ -122,6 +124,11 @@ export class ManeuverEntry {
     this.ability = data.ability ?? null;
     this.baseType = data.baseType ?? titleize(id);
     this.weaponGroups = [...(data.weaponGroups ?? [])];
+    this.description = data.description ?? '';
+    this.notes = {
+      effect: [...(data.notes?.effect ?? [])],
+      footer: [...(data.notes?.footer ?? [])],
+    };
     this.resolveOptions = data.resolveOptions ?? null;
     this.onUse = data.onUse ?? null;
   }
@@ -225,6 +232,6 @@ export const maneuvers = new ManeuverRegistry();
 /** Register the ten core maneuvers. Called at `init`, before consumers register. */
 export function registerDefaults() {
   for (const [id, data] of Object.entries(DEFAULTS)) {
-    maneuvers.register('pf1-combat-maneuvers', id, data);
+    maneuvers.register('pf1-combat-maneuvers', id, { ...MANEUVER_TEXT[id], ...data });
   }
 }
