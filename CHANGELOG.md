@@ -39,6 +39,10 @@
   kept in sync.
 - API at `game.pf1CombatManeuvers`, with a `pf1CombatManeuvers.ready` hook.
 
+### Changed
+- The Combat Maneuvers section on the combat tab sits below Natural Attacks rather than
+  at the top.
+
 ### Fixed
 - The module ships its own icon set rather than borrowing the system's. Six of the
   ten maneuvers had no icon at all on PF1 v11 — that art only exists in v12 — and

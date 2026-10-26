@@ -43,8 +43,8 @@ export function registerEarlyConfig() {
     filters: [{ type: 'attack', subTypes: [SUBTYPE] }],
     interface: { create: true },
     create: { type: 'attack', system: { subType: SUBTYPE } },
-    // Between the stock weapons (1_000) and weapon-like (1_100) sections.
-    sort: 1_050,
+    // Between the stock natural attacks (2_000) and class features (3_000) sections.
+    sort: 2_500,
   };
 }
 
