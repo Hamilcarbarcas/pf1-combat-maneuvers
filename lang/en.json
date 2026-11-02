@@ -41,6 +41,7 @@
     },
     "Editor": {
       "Title": "Manage Combat Maneuvers",
+      "Open": "Manage combat maneuvers",
       "TitleFor": "Combat Maneuvers — {name}",
       "Hint": "Editing or showing a maneuver creates its item.",
       "Edit": "Edit item",

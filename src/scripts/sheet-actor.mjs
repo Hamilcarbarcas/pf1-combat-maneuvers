@@ -69,21 +69,29 @@ function applySectionFilter(wrapped, item, section) {
   return item.document?.system?.showInCombat !== false;
 }
 
-/** Right-click the CMB box to manage the maneuver items themselves. */
+/**
+ * The Combat Maneuvers section header gets a control that opens the maneuver
+ * manager. The header's controls cell is only drawn for owners.
+ */
 function onRenderActorSheet(app, html) {
-  if (app.actor?.system?.config?.noManeuvers) return;
+  const actor = app.actor;
+  if (!actor || actor.system?.config?.noManeuvers) return;
 
   const root = html instanceof HTMLElement ? html : html?.[0];
-  // The summary block and the combat tab each carry their own CMB box.
-  for (const box of root?.querySelectorAll('[data-attribute="cmb"]') ?? []) {
-    if (box.dataset.pf1cmBound) continue;
-    box.dataset.pf1cmBound = 'true';
-    box.addEventListener('contextmenu', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      ManeuverEditor.open(app.actor);
-    });
-  }
+  const controls = root?.querySelector(
+    `.tab.combat ol.item-list[data-list="${SECTION_ID}"] > .item-list-header > .item-controls`
+  );
+  if (!controls || controls.querySelector('.pf1cm-manage')) return;
+
+  const control = document.createElement('a');
+  control.className = 'item-control pf1cm-manage';
+  control.dataset.tooltip = 'PF1CM.Editor.Open';
+  control.innerHTML = '<i class="fa-solid fa-list-check" inert></i>';
+  control.addEventListener('click', (event) => {
+    event.preventDefault();
+    ManeuverEditor.open(actor);
+  });
+  controls.append(control);
 }
 
 export function registerActorSheet() {

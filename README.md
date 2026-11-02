@@ -92,8 +92,8 @@ such as `Target prone on success` for Trip. The notes appear on the attack card
 whether or not the maneuver has an item yet. On an existing maneuver item they fill in only
 where the description or notes are empty, so your own text is never replaced.
 
-Those items are created **on demand**. Right-click **CMB** to open the manager,
-which lists every maneuver and lets you edit one or show it on the combat tab —
+Those items are created **on demand**. The list icon in the **Combat Maneuvers**
+header on the combat tab opens the manager, which lists every maneuver and lets you edit one or show it on the combat tab —
 either action creates the item at that point. Until then nothing exists, and rolling
 a maneuver you have never customized still works exactly as if it did.
 

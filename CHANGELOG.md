@@ -18,8 +18,9 @@
 - **Maneuver picker on the CMB button.** Left-clicking CMB lists every maneuver plus
   an untyped **Generic** entry, each showing the modifier that actually applies, and
   rolls the chosen one through PF1's ordinary attack pipeline.
-- **Maneuver manager on right-click.** Lists every maneuver with an edit button and a
-  combat-tab toggle; either action creates the underlying item at that point.
+- **Maneuver manager on the Combat Maneuvers section header.** Lists every maneuver
+  with an edit button and a combat-tab toggle; either action creates the underlying
+  item at that point.
 - **Combat Maneuvers category on the combat tab**, with the same `+` create button
   the other attack categories have, so custom maneuvers are made the same way custom
   attacks are.

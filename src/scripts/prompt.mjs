@@ -162,7 +162,7 @@ export class ManeuverPrompt extends foundry.applications.api.ApplicationV2 {
 }
 
 /**
- * The right-click menu on the CMB box.
+ * The maneuver manager, opened from the Combat Maneuvers section header.
  *
  * Lists every registered maneuver with its materialization state, so the item for
  * one can be opened for editing, or shown on the combat tab, without hunting for it.
