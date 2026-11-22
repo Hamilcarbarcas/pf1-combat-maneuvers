@@ -30,6 +30,9 @@ export const CMD_PATH = 'attributes.cmd.maneuvers';
 /** Sort bases, slotting our targets immediately after PF1's generic cmb/cmd/ffcmd. */
 const SORT = { cmb: 150_500, cmd: 151_500, ffcmd: 152_500 };
 
+/** Row order inside a maneuver's picker group; the targets are registered kind by kind. */
+const GROUP_ORDER = { cmb: 0, cmd: 1, ffcmd: 2 };
+
 /** Register the attack subtype and the combat-tab section. Runs at `init`. */
 export function registerEarlyConfig() {
   const cfg = pf1.config;
@@ -52,6 +55,11 @@ export function registerEarlyConfig() {
 export function registerChangeTargets() {
   const cfg = pf1.config;
   const section = game.i18n.localize('PF1CM.Section');
+  const short = {
+    cmb: game.i18n.localize('PF1CM.TargetShort.CMB'),
+    cmd: game.i18n.localize('PF1CM.TargetShort.CMD'),
+    ffcmd: game.i18n.localize('PF1CM.TargetShort.FFCMD'),
+  };
 
   // getBuffTargetDictionary reads categories[category].label without guarding, so
   // the category has to exist before any target claims it.
@@ -65,11 +73,19 @@ export function registerChangeTargets() {
     const cmd = game.i18n.format('PF1CM.Target.CMD', { maneuver });
     const ffcmd = game.i18n.format('PF1CM.Target.FFCMD', { maneuver });
 
-    cfg.buffTargets[`cmb.${entry.id}`] = { label: cmb, category: SECTION_ID, sort: SORT.cmb + index };
-    cfg.buffTargets[`cmd.${entry.id}`] = { label: cmd, category: SECTION_ID, sort: SORT.cmd + index };
-    cfg.buffTargets[`ffcmd.${entry.id}`] = { label: ffcmd, category: SECTION_ID, sort: SORT.ffcmd + index };
+    // One picker group per maneuver (common/picker/grouped-picker.mjs).
+    const group = (key) => ({ group: maneuver, shortLabel: short[key], groupOrder: GROUP_ORDER[key] });
 
-    cfg.contextNoteTargets[`cmb.${entry.id}`] = { label: cmb, category: SECTION_ID };
-    cfg.contextNoteTargets[`cmd.${entry.id}`] = { label: cmd, category: SECTION_ID };
+    cfg.buffTargets[`cmb.${entry.id}`] = { label: cmb, category: SECTION_ID, sort: SORT.cmb + index, ...group('cmb') };
+    cfg.buffTargets[`cmd.${entry.id}`] = { label: cmd, category: SECTION_ID, sort: SORT.cmd + index, ...group('cmd') };
+    cfg.buffTargets[`ffcmd.${entry.id}`] = {
+      label: ffcmd,
+      category: SECTION_ID,
+      sort: SORT.ffcmd + index,
+      ...group('ffcmd'),
+    };
+
+    cfg.contextNoteTargets[`cmb.${entry.id}`] = { label: cmb, category: SECTION_ID, ...group('cmb') };
+    cfg.contextNoteTargets[`cmd.${entry.id}`] = { label: cmd, category: SECTION_ID, ...group('cmd') };
   });
 }

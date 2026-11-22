@@ -2,6 +2,7 @@
 // the public API.
 
 import { MODULE_ID, registerEarlyConfig, registerChangeTargets } from './config.mjs';
+import { defineGroupedPicker } from '../common/picker/grouped-picker.mjs';
 import { maneuvers, registerDefaults, ManeuverOption } from './registry.mjs';
 import { registerChanges, getManeuverCMB, getManeuverCMD, getManeuverNotes } from './changes.mjs';
 import {
@@ -30,6 +31,7 @@ Hooks.once('init', () => {
   registerDefaults();
   registerSettings();
   registerEarlyConfig();
+  defineGroupedPicker();
 
   if (!game.modules.get('lib-wrapper')?.active) {
     console.error('[pf1-combat-maneuvers] libWrapper is not active. The module is disabled.');

@@ -39,7 +39,8 @@
     "src/scripts/combat-maneuvers.mjs"
   ],
   "styles": [
-    "src/styles/pf1-combat-maneuvers.css"
+    "src/styles/pf1-combat-maneuvers.css",
+    "src/common/picker/grouped-picker.css"
   ],
   "languages": [
     {

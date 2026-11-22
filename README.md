@@ -62,8 +62,9 @@ general CMD.
 
 ## Bonuses to a specific maneuver
 
-Add a Change to any item and pick a target under **Combat Maneuvers**. For Improved
-Trip, that is `+2 untyped` to `CMB (Trip)`.
+Add a Change to any item and pick a target under **Combat Maneuvers**, where each
+maneuver is a collapsible group holding its CMB, CMD, and Flat-Footed CMD. For
+Improved Trip, that is `+2 untyped` to `CMB (Trip)`.
 
 These stack with everything else the way an attack bonus normally does — they are
 pulled into the roll through the same machinery PF1 uses for melee, ranged and

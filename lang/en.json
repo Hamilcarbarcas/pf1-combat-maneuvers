@@ -32,6 +32,11 @@
       "CMD": "CMD vs. {maneuver}",
       "FFCMD": "Flat-Footed CMD vs. {maneuver}"
     },
+    "TargetShort": {
+      "CMB": "CMB",
+      "CMD": "CMD",
+      "FFCMD": "Flat-Footed CMD"
+    },
     "Prompt": {
       "Title": "Combat Maneuver",
       "TitleFor": "Combat Maneuver — {name}",

@@ -1,0 +1,7 @@
+{
+  "dest": "src/common",
+  "files": [
+    "picker/grouped-picker.mjs",
+    "picker/grouped-picker.css"
+  ]
+}

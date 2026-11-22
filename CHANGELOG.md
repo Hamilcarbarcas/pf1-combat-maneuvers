@@ -3,6 +3,10 @@
 ## Unreleased
 
 ### Added
+- **Maneuver groups in the target picker.** The Combat Maneuvers category of the change
+  and context-note target picker folds into one collapsible group per maneuver (CMB, CMD,
+  Flat-Footed CMD), with a search box. The shared grouped picker is vendored, so it works
+  without any other module.
 - Initial implementation. Combat maneuvers become individually addressable: each has
   its own identity, its own bonuses, its own defense, and its own way to be rolled.
 - **Maneuver registry** with the ten core maneuvers (bull rush, dirty trick, disarm,
